@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'rea
 
 const win = Dimensions.get('window');
 
-const WalkthroughScreen = ()=>{
+const WalkthroughScreen = ({ navigation })=>{
     return <View style={styles.container}>
         <Image source={require('../../assets/walkthrough.jpg')} style={styles.imageStyle}/>
         <View style={styles.inTouchContainer}>
@@ -14,7 +14,7 @@ const WalkthroughScreen = ()=>{
             <TouchableOpacity>
                 <Text style={styles.actions}>REGISTER</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('SignIn')}>
                 <Text style={styles.actions}>SIGN IN</Text>
             </TouchableOpacity>
         </View>

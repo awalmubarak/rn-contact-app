@@ -3,6 +3,7 @@ import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 import WelcomeScreen from './src/screens/WelcomeScreen'
 import WalkthroughScreen from './src/screens/WalkthroughScreen';
+import SignInScreen from './src/screens/SignInScreen';
 
 
 const navigator = createStackNavigator({
@@ -18,10 +19,18 @@ const navigator = createStackNavigator({
       header: null,
     },
   },
+  SignIn: SignInScreen
 }, {
   initialRouteName: "Welcome",
   defaultNavigationOptions: {
-    title: "Contact App"
+    title: "Contact App",
+    headerStyle:{
+      backgroundColor: "#fe2b4b"
+    },
+    headerTitleStyle:{
+      color:"white"
+    },
+    headerTintColor: "white"
   }
 })
 
