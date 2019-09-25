@@ -2,12 +2,12 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import ampersandLogo from '../../assets/ampersand.png'
 
-const WelcomeScreen = ()=>{
+const WelcomeScreen = ({navigation})=>{
     return (
         <View style={styles.containerStyle}>
             <Image source={require('../../assets/ampersand.png')} style={styles.imageStyle}/>
             <Text style={styles.appName}>AMPERSAND {"\n"} CONTACTS</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('Walkthrough')}>
                 <Text style={styles.startedButton}>GET STARTED</Text>
             </TouchableOpacity>
         </View>
