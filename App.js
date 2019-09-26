@@ -4,6 +4,7 @@ import {createStackNavigator} from 'react-navigation-stack'
 import WelcomeScreen from './src/screens/WelcomeScreen'
 import WalkthroughScreen from './src/screens/WalkthroughScreen';
 import SignInScreen from './src/screens/SignInScreen';
+import RegisterScreen from './src/screens/RegisterScreen';
 
 
 const navigator = createStackNavigator({
@@ -19,7 +20,8 @@ const navigator = createStackNavigator({
       header: null,
     },
   },
-  SignIn: SignInScreen
+  SignIn: SignInScreen,
+  Register: RegisterScreen
 }, {
   initialRouteName: "Welcome",
   defaultNavigationOptions: {

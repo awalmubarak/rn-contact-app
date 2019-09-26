@@ -11,7 +11,7 @@ const WalkthroughScreen = ({ navigation })=>{
             <Text style={styles.signIn}>Sign in or register with your Ampersand email</Text>
         </View>
         <View style={styles.actionsContainer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('Register')}>
                 <Text style={styles.actions}>REGISTER</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>navigation.navigate('SignIn')}>
