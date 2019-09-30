@@ -24,12 +24,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#f4f4f0"
     },
     imageStyle: {
-        width: 300,
-        height: 100,
+        width: 200,
+        height: 50,
         resizeMode: "contain"
     },
     appName: {
         fontSize: 20,
+        letterSpacing: 3,
+        textAlign: "center"
     },
     startedButton:{
         borderBottomColor: "#c15737",

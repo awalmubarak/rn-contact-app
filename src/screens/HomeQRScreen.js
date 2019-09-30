@@ -23,13 +23,21 @@ const HomeQRScreen = ({navigation})=>{
         </View>
 
         <View style={styles.bottomCTAcontainer}>
-            <Text style={styles.ctaMessageStyle}>Want to add a new connection?</Text>
+            <Text>Want to add a new connection?</Text>
             <TouchableOpacity style={styles.ctaButtonStyle} onPress={()=>navigation.navigate('ScanMember')}>
                 <Text style={styles.ctaButtonTextStyle}>Scan QR</Text>
             </TouchableOpacity>
         </View>
     </View>
 }
+
+HomeQRScreen.navigationOptions =({navigation})=> {
+    return {
+        headerRight: <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
+    <Image source={require('../../assets/nav-icon.png')} style={styles.navIconStyle}/>
+  </TouchableOpacity>
+    }
+  }
 
 const styles = StyleSheet.create({
     containerStyle:{
@@ -94,8 +102,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 2,
     },
-    ctaMessageStyle:{
-
+    navIconStyle:{
+        width:25, 
+        height: 25, 
+        marginRight:15
     }
 })
 

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, KeyboardAvoidingView, TouchableOpacity }
 import FormInput from '../components/FormInput'
 
 
-const RegisterScreen = ()=>{
+const RegisterScreen = ({navigation})=>{
     return <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <TouchableOpacity style={styles.iconContainer}>
             <Image source={require('../../assets/user.png')} style={styles.userIconStyle}/>
@@ -35,8 +35,9 @@ const RegisterScreen = ()=>{
                 placeholder="/joan.shay"
             />
 
-            <TouchableOpacity  style={styles.signInButton}>
-                <Text style={styles.signInButtonText}>SIGN IN</Text>
+            <TouchableOpacity  style={styles.signInButton} 
+                onPress={()=>navigation.navigate("HomeQRScreen")}>
+                <Text style={styles.signInButtonText}>REGISTER</Text>
             </TouchableOpacity>
         </View>
     </KeyboardAvoidingView>

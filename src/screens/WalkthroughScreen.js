@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
     },
     inTouch:{
         fontSize: 18,
-        marginVertical: 5
+        marginVertical: 5,
+        marginBottom: 10
     },
     actions:{ 
         borderBottomColor: "#c15737",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect,useState} from 'react';
 import { TouchableOpacity, Image } from 'react-native'
 import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
@@ -8,7 +8,19 @@ import SignInScreen from './src/screens/SignInScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 import HomeQRScreen from './src/screens/HomeQRScreen';
 import ScanMemberQRScreen from './src/screens/ScanMemberQRScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import * as Font from 'expo-font';
+import { setCustomText } from 'react-native-global-props'
+import {AppLoading} from 'expo'
 
+
+const customTextProps = {
+  style: {
+    fontFamily: 'brown-otf',
+    color: "#4c4d4f",
+    fontSize: 15
+  }
+}
 
 
 const navigator = createStackNavigator({
@@ -26,20 +38,14 @@ const navigator = createStackNavigator({
   },
   SignIn: SignInScreen,
   Register: RegisterScreen,
-  HomeQRScreen: {
-    screen: HomeQRScreen,
-    navigationOptions:{
-      headerRight: <TouchableOpacity>
-        <Image source={require('./assets/nav-icon.png')} style={{width:25, height: 25, marginRight:15}}/>
-      </TouchableOpacity>
-    }
-  },
+  HomeQRScreen:  HomeQRScreen,
   ScanMember: {
     screen: ScanMemberQRScreen,
     navigationOptions:{
       header: null
     }
-  }
+  },
+  Profile: ProfileScreen
 }, {
   initialRouteName: "Welcome",
   defaultNavigationOptions: {
@@ -54,4 +60,24 @@ const navigator = createStackNavigator({
   }
 })
 
-export default createAppContainer(navigator);
+
+const App = createAppContainer(navigator);
+
+const Main = ()=>{
+  const [fontLoaded, setFontLoaded] = useState(false)
+  const loadfont = async()=>{
+    await Font.loadAsync({
+      'brown-otf': require('./assets/fonts/brown.otf'),
+    });
+    setCustomText(customTextProps);
+    setFontLoaded(true)
+  }
+  useEffect(() => {
+    loadfont()
+  }, []);
+  if(fontLoaded===false)return <AppLoading/>;
+  return <App/>
+}
+
+
+export default Main;
