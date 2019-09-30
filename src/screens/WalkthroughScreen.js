@@ -21,6 +21,10 @@ const WalkthroughScreen = ({ navigation })=>{
     </View>
 }
 
+WalkthroughScreen.navigationOptions = ()=> {
+    return {header: null}
+  }
+
 const styles = StyleSheet.create({
     container:{
         flex: 1,

@@ -43,6 +43,10 @@ const ScanMemberQRScreen = ()=>{
     </View>
 }
 
+ScanMemberQRScreen.navigationOptions = ()=> {
+    return {header: null}
+  }
+
 const styles = StyleSheet.create({
     containerStyle:{
         flex: 1

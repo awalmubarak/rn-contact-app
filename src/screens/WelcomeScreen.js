@@ -14,6 +14,10 @@ const WelcomeScreen = ({navigation})=>{
     )
 }
 
+WelcomeScreen.navigationOptions = ()=> {
+    return {header: null}
+  }
+
 
 const styles = StyleSheet.create({
     containerStyle: {

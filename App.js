@@ -24,27 +24,12 @@ const customTextProps = {
 
 
 const navigator = createStackNavigator({
-  Welcome: {
-    screen: WelcomeScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  Walkthrough: {
-    screen: WalkthroughScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
+  Welcome: WelcomeScreen,
+  Walkthrough:WalkthroughScreen,
   SignIn: SignInScreen,
   Register: RegisterScreen,
   HomeQRScreen:  HomeQRScreen,
-  ScanMember: {
-    screen: ScanMemberQRScreen,
-    navigationOptions:{
-      header: null
-    }
-  },
+  ScanMember: ScanMemberQRScreen,
   Profile: ProfileScreen
 }, {
   initialRouteName: "Welcome",
@@ -54,10 +39,11 @@ const navigator = createStackNavigator({
       backgroundColor: "#fe2b4b"
     },
     headerTitleStyle:{
-      color:"white"
+      color:"white",
     },
     headerTintColor: "white"
-  }
+  },
+  headerLayoutPreset: 'center'
 })
 
 

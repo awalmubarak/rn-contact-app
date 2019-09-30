@@ -42,6 +42,11 @@ const RegisterScreen = ({navigation})=>{
         </View>
     </KeyboardAvoidingView>
 }
+RegisterScreen.navigationOptions = ()=> {
+    return {
+        title: "Sign In"
+    }
+}
 
 const styles = StyleSheet.create({
     container:{

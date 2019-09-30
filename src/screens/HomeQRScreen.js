@@ -33,10 +33,11 @@ const HomeQRScreen = ({navigation})=>{
 
 HomeQRScreen.navigationOptions =({navigation})=> {
     return {
+        title: "Ampersand",
         headerRight: <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
     <Image source={require('../../assets/nav-icon.png')} style={styles.navIconStyle}/>
   </TouchableOpacity>
-    }
+        }
   }
 
 const styles = StyleSheet.create({

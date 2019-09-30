@@ -34,6 +34,12 @@ const ProfileScreen = ()=>{
     </View>
 }
 
+ProfileScreen.navigationOptions = ({appTitle})=> {
+    return {
+        title: appTitle ? appTitle : "My Profile"
+    }
+}
+
 
 const styles = StyleSheet.create({
     container:{
