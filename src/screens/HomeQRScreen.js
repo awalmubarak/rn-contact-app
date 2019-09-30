@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 
-const HomeQRScreen = ()=>{
+const HomeQRScreen = ({navigation})=>{
     return <View style={styles.containerStyle}>
         <View style={styles.contentStyle}>
             <View style={styles.introTextContainer}>
@@ -24,7 +24,7 @@ const HomeQRScreen = ()=>{
 
         <View style={styles.bottomCTAcontainer}>
             <Text style={styles.ctaMessageStyle}>Want to add a new connection?</Text>
-            <TouchableOpacity style={styles.ctaButtonStyle}>
+            <TouchableOpacity style={styles.ctaButtonStyle} onPress={()=>navigation.navigate('ScanMember')}>
                 <Text style={styles.ctaButtonTextStyle}>Scan QR</Text>
             </TouchableOpacity>
         </View>

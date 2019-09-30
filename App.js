@@ -7,6 +7,8 @@ import WalkthroughScreen from './src/screens/WalkthroughScreen';
 import SignInScreen from './src/screens/SignInScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 import HomeQRScreen from './src/screens/HomeQRScreen';
+import ScanMemberQRScreen from './src/screens/ScanMemberQRScreen';
+
 
 
 const navigator = createStackNavigator({
@@ -30,6 +32,12 @@ const navigator = createStackNavigator({
       headerRight: <TouchableOpacity>
         <Image source={require('./assets/nav-icon.png')} style={{width:25, height: 25, marginRight:15}}/>
       </TouchableOpacity>
+    }
+  },
+  ScanMember: {
+    screen: ScanMemberQRScreen,
+    navigationOptions:{
+      header: null
     }
   }
 }, {
