@@ -34,7 +34,7 @@ const HomeQRScreen = ({navigation})=>{
 HomeQRScreen.navigationOptions =({navigation})=> {
     return {
         title: "Ampersand",
-        headerRight: <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
+        headerRight: <TouchableOpacity onPress={()=>navigation.navigate('Profile', {appTitle: "My Profile"})}>
     <Image source={require('../../assets/nav-icon.png')} style={styles.navIconStyle}/>
   </TouchableOpacity>
         }

@@ -37,7 +37,7 @@ const ProfileScreen = ()=>{
 ProfileScreen.navigationOptions = ({navigation})=> {
     const appTitle = navigation.getParam('appTitle');
     return {
-        title: appTitle!==null ? appTitle: "My Profile"
+        title: appTitle
     }
 }
 
