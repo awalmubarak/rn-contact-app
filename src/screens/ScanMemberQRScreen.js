@@ -30,6 +30,7 @@ const ScanMemberQRScreen = ({navigation})=>{
         <BarCodeScanner 
             onBarCodeScanned={barcodeScanned}
             style={styles.scannerStyle}
+            barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
         />
        
         <View style={styles.bottomCTAcontainer}>
