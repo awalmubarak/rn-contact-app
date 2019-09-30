@@ -8,13 +8,12 @@ import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 
-const ScanMemberQRScreen = ()=>{
+const ScanMemberQRScreen = ({navigation})=>{
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
     const [scanned, setScanned] = useState(false)
 
     const barcodeScanned = ({type, data})=>{
-        setScanned(true)
-        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        navigation.navigate("Profile", {appTitle: "Member Profile"})
     }
 
     const didMount = async ()=>{
@@ -36,7 +35,7 @@ const ScanMemberQRScreen = ()=>{
        
         <View style={styles.bottomCTAcontainer}>
             <Text style={styles.ctaMessageStyle}>Want to share your contact?</Text>
-            <TouchableOpacity style={styles.ctaButtonStyle} onPress={() => setScanned(false)}>
+            <TouchableOpacity style={styles.ctaButtonStyle} onPress={() => navigation.goBack()}>
                 <Text style={styles.ctaButtonTextStyle}>Send QR</Text>
             </TouchableOpacity>
         </View>
