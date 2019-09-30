@@ -30,15 +30,9 @@ const ScanMemberQRScreen = ({navigation})=>{
         <BarCodeScanner 
             onBarCodeScanned={barcodeScanned}
             style={styles.scannerStyle}
-            barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
+            // barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
         />
-       
-        <View style={styles.bottomCTAcontainer}>
-            <Text>Want to share your contact?</Text>
-            <TouchableOpacity style={styles.ctaButtonStyle} onPress={() => navigation.goBack()}>
-                <Text style={styles.ctaButtonTextStyle}>Send QR</Text>
-            </TouchableOpacity>
-        </View>
+  
 
         <View style={styles.topCameraActions}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -49,6 +43,12 @@ const ScanMemberQRScreen = ({navigation})=>{
         <View style={styles.scannerBoxContainer}> 
             <Ionicons name="ios-qr-scanner" size={300} color="white" style={styles.scannerBox}/>
             <Text style={styles.qrScannerText}>Place QR Code Within Frame</Text>
+        </View>
+        <View style={styles.bottomCTAcontainer}>
+            <Text>Want to share your contact?</Text>
+            <TouchableOpacity style={styles.ctaButtonStyle} onPress={() => navigation.goBack()}>
+                <Text style={styles.ctaButtonTextStyle}>Send QR</Text>
+            </TouchableOpacity>
         </View>
     </View>
 }
