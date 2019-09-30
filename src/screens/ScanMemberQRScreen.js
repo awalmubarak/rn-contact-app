@@ -1,16 +1,15 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button, TouchableOpacity, Dimensions } from 'react-native';
-import Constants from 'expo-constants';
+import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import * as Permissions from 'expo-permissions';
-
+import { Ionicons } from '@expo/vector-icons'
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
+const win = Dimensions.get('screen');
 
 const ScanMemberQRScreen = ({navigation})=>{
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
-    const [scanned, setScanned] = useState(false)
 
     const barcodeScanned = ({type, data})=>{
         navigation.navigate("Profile", {appTitle: "Member Profile"})
@@ -34,10 +33,21 @@ const ScanMemberQRScreen = ({navigation})=>{
         />
        
         <View style={styles.bottomCTAcontainer}>
-            <Text style={styles.ctaMessageStyle}>Want to share your contact?</Text>
+            <Text>Want to share your contact?</Text>
             <TouchableOpacity style={styles.ctaButtonStyle} onPress={() => navigation.goBack()}>
                 <Text style={styles.ctaButtonTextStyle}>Send QR</Text>
             </TouchableOpacity>
+        </View>
+
+        <View style={styles.topCameraActions}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Ionicons name="md-close" size={20} color="white"/>
+            </TouchableOpacity>
+        </View>
+
+        <View style={styles.scannerBoxContainer}> 
+            <Ionicons name="ios-qr-scanner" size={300} color="white" style={styles.scannerBox}/>
+            <Text style={styles.qrScannerText}>Place QR Code Within Frame</Text>
         </View>
     </View>
 }
@@ -51,7 +61,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     scannerStyle:{
-        width: Dimensions.get('screen').width,
+        width: win.width,
         flex:1,
         position: "absolute",
         top: 0,
@@ -81,58 +91,34 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 2,
     },
-    ctaMessageStyle:{
-
+    topCameraActions:{
+        width: win.width,
+        position: 'absolute',
+        flexDirection: "row",
+        justifyContent:"flex-end",
+        right: 30,
+        top: 50
+    },
+    scannerBoxContainer: {
+        flexDirection: "column",
+        flex: 1,
+        top: 0,
+        right: 0,
+        left: 0,
+        bottom: 0,
+        marginHorizontal: 50,
+        justifyContent: "center",
+        opacity: 0.5
+    },
+    scannerBox:{
+        top: -20
+    },
+    qrScannerText:{
+        color: "white",
+        top: -20,
+        fontSize: 17,
+        textAlign: "center"
     }
 })
 
 export default ScanMemberQRScreen;
-
-// export default class ScanMemberQRScreen extends React.Component {
-//   state = {
-//     hasCameraPermission: null,
-//     scanned: false,
-//   };
-
-//   async componentDidMount() {
-//     this.getPermissionsAsync();
-//   }
-
-//   getPermissionsAsync = async () => {
-//     const { status } = await Permissions.askAsync(Permissions.CAMERA);
-//     this.setState({ hasCameraPermission: status === 'granted' });
-//   };
-
-//   render() {
-//     const { hasCameraPermission, scanned } = this.state;
-
-//     if (hasCameraPermission === null) {
-//       return <Text>Requesting for camera permission</Text>;
-//     }
-//     if (hasCameraPermission === false) {
-//       return <Text>No access to camera</Text>;
-//     }
-//     return (
-//       <View
-//         style={{
-//           flex: 1,
-//           flexDirection: 'column',
-//           justifyContent: 'flex-end',
-//         }}>
-//         <BarCodeScanner
-//           onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
-//           style={StyleSheet.absoluteFillObject}
-//         />
-
-//         {scanned && (
-//           <Button title={'Tap to Scan Again'} onPress={() => this.setState({ scanned: false })} />
-//         )}
-//       </View>
-//     );
-//   }
-
-//   handleBarCodeScanned = ({ type, data }) => {
-//     this.setState({ scanned: true });
-//     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-//   };
-// }
