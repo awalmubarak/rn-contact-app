@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View, Text, StyleSheet, Image, Dimensions, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import FormInput from '../components/FormInput'
+import OrientationLoadingOverlay from 'react-native-orientation-loading-overlay';
 
 const win = Dimensions.get('screen')
 const SignInScreen = ({navigation})=>{
+    const [isSigingIn, setIsSigingIn] = useState(false)
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
                 <Image source={require('../../assets/login.jpg')} style={styles.imageStyle}/>
@@ -18,18 +20,32 @@ const SignInScreen = ({navigation})=>{
                             placeholder="******"
                             secure={true}
                         />
-                        <TouchableOpacity  style={styles.signInButton} onPress={()=>navigation.navigate("HomeQRScreen")}>
+                        <TouchableOpacity  style={styles.signInButton} 
+                            onPress={()=>{
+                                setIsSigingIn(true);
+                                setTimeout(()=>{
+                                    setIsSigingIn(false);
+                                    navigation.navigate("HomeQRScreen");
+                                }, 3000);
+                            }}>
                             <Text style={styles.signInButtonText}>SIGN IN</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.resetPassword}>
                         <Text>Forgot? </Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity >
                             <Text style={styles.resetText}>Reset Password</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
+                <OrientationLoadingOverlay
+                    visible={isSigingIn}
+                    color="white"
+                    indicatorSize="large"
+                    messageFontSize={16}
+                    message="SIGING IN..."
+                    />
         </KeyboardAvoidingView>
     )
 }
