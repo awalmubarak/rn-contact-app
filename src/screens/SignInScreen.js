@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, Dimensions, KeyboardAvoidingView, Toucha
 import FormInput from '../components/FormInput'
 
 const win = Dimensions.get('screen')
-const SignInScreen = ()=>{
+const SignInScreen = ({navigation})=>{
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
                 <Image source={require('../../assets/login.jpg')} style={styles.imageStyle}/>
@@ -18,7 +18,7 @@ const SignInScreen = ()=>{
                             placeholder="******"
                             secure={true}
                         />
-                        <TouchableOpacity  style={styles.signInButton}>
+                        <TouchableOpacity  style={styles.signInButton} onPress={()=>navigation.navigate("HomeQRScreen")}>
                             <Text style={styles.signInButtonText}>SIGN IN</Text>
                         </TouchableOpacity>
                     </View>

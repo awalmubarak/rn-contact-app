@@ -1,10 +1,12 @@
 import React from 'react';
+import { TouchableOpacity, Image } from 'react-native'
 import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 import WelcomeScreen from './src/screens/WelcomeScreen'
 import WalkthroughScreen from './src/screens/WalkthroughScreen';
 import SignInScreen from './src/screens/SignInScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
+import HomeQRScreen from './src/screens/HomeQRScreen';
 
 
 const navigator = createStackNavigator({
@@ -21,7 +23,15 @@ const navigator = createStackNavigator({
     },
   },
   SignIn: SignInScreen,
-  Register: RegisterScreen
+  Register: RegisterScreen,
+  HomeQRScreen: {
+    screen: HomeQRScreen,
+    navigationOptions:{
+      headerRight: <TouchableOpacity>
+        <Image source={require('./assets/nav-icon.png')} style={{width:25, height: 25, marginRight:15}}/>
+      </TouchableOpacity>
+    }
+  }
 }, {
   initialRouteName: "Welcome",
   defaultNavigationOptions: {
