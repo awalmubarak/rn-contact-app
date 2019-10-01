@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from 'react';
 import { TouchableOpacity, Image } from 'react-native'
-import {createAppContainer} from 'react-navigation'
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 import WelcomeScreen from './src/screens/WelcomeScreen'
 import WalkthroughScreen from './src/screens/WalkthroughScreen';
@@ -12,27 +12,10 @@ import ProfileScreen from './src/screens/ProfileScreen';
 import * as Font from 'expo-font';
 import { setCustomText } from 'react-native-global-props'
 import {AppLoading} from 'expo'
+import AuthLoadingScreen from './src/screens/AuthLoadingScreen';
 
 
-const customTextProps = {
-  style: {
-    fontFamily: 'brown-otf',
-    color: "#4c4d4f",
-    fontSize: 15
-  }
-}
-
-
-const navigator = createStackNavigator({
-  Welcome: WelcomeScreen,
-  Walkthrough:WalkthroughScreen,
-  SignIn: SignInScreen,
-  Register: RegisterScreen,
-  HomeQRScreen:  HomeQRScreen,
-  ScanMember: ScanMemberQRScreen,
-  Profile: ProfileScreen
-}, {
-  initialRouteName: "Welcome",
+const defaultConfigs = {
   defaultNavigationOptions: {
     title: "Contact App",
     headerStyle:{
@@ -44,10 +27,39 @@ const navigator = createStackNavigator({
     headerTintColor: "white"
   },
   headerLayoutPreset: 'center'
+}
+
+const AppStack = createStackNavigator({
+  HomeQRScreen:  HomeQRScreen,
+  ScanMember: ScanMemberQRScreen,
+  Profile: ProfileScreen
+}, defaultConfigs)
+
+const AuthStack = createStackNavigator({
+  Welcome: WelcomeScreen,
+  Walkthrough:WalkthroughScreen,
+  SignIn: SignInScreen,
+  Register: RegisterScreen,
+}, defaultConfigs)
+
+
+const navigator = createSwitchNavigator({
+  AuthLoading: AuthLoadingScreen,
+  Auth: AuthStack,
+  App: AppStack
+  
 })
 
 
 const App = createAppContainer(navigator);
+
+const customTextProps = {
+  style: {
+    fontFamily: 'brown-otf',
+    color: "#4c4d4f",
+    fontSize: 15
+  }
+}
 
 const Main = ()=>{
   const [fontLoaded, setFontLoaded] = useState(false)
