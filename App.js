@@ -13,7 +13,8 @@ import * as Font from 'expo-font';
 import { setCustomText } from 'react-native-global-props'
 import {AppLoading} from 'expo'
 import AuthLoadingScreen from './src/screens/AuthLoadingScreen';
-
+import { AuthProvider } from './src/contexts/AuthContext'
+import NavigationService from './src/NavigationService';
 
 const defaultConfigs = {
   defaultNavigationOptions: {
@@ -74,7 +75,9 @@ const Main = ()=>{
     loadfont()
   }, []);
   if(fontLoaded===false)return <AppLoading/>;
-  return <App/>
+  return <AuthProvider>
+          <App ref={ref=>{NavigationService.setNavigator(ref)}}/>
+        </AuthProvider>
 }
 
 
