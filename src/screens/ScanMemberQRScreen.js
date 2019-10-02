@@ -12,7 +12,18 @@ const ScanMemberQRScreen = ({navigation})=>{
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
 
     const barcodeScanned = ({type, data})=>{
-        navigation.navigate("Profile", {appTitle: "Member Profile", data})
+        const mData = {
+            "email": "rachel@ampersandllc.co",
+            "password": "yelL0w",
+            "firstName": "Rachel",
+            "lastName": "Antwi",
+            "photo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg==",
+            "phoneNumber": "+233243453323",
+            "twitter": "@missAmaRayRay",
+            "linkedIn": "https://www.linkedin.com/in/rachel-antwi",
+            "website": "www.codetraingh.com"
+        }
+        navigation.navigate("Profile", {appTitle: "Member Profile", data:mData})
     }
 
     const didMount = async ()=>{

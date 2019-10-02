@@ -18,9 +18,9 @@ const HomeQRScreen = ({navigation})=>{
             </View>
 
             <View style={styles.userInfoContainer}>
-                <Image source={require('../../assets/user.png')} style={styles.userImageStyle}/>
+                <Image source={{uri:state.photo}} style={styles.userImageStyle}/>
                 <View style={styles.userInfoStyle}>
-                    <Text style={styles.primaryTextStyle}>Joan Shay</Text>
+                    <Text style={styles.primaryTextStyle}>{state.firstName} {state.lastName}</Text>
                     <Text style={styles.secondaryTextStyle}>Head of Marketing</Text>
                 </View>
             </View>

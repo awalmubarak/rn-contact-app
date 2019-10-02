@@ -4,12 +4,17 @@ import { ActivityIndicator, AsyncStorage, View, StatusBar } from 'react-native'
 const AuthLoadingScreen = ({navigation})=>{
 
     const checkAuthStatus = async()=>{
-        const token = await AsyncStorage.getItem('token');
-        navigation.navigate(token? "App" : "Auth")
+        const user = await AsyncStorage.getItem('userInfo');
+        return user;
     }
 
     useEffect(() => {
-        checkAuthStatus()
+        const user = checkAuthStatus()
+        if(user && user.firstName && user.lastName){
+          navigation.navigate("App")
+        }else{
+          navigation.navigate("Auth")
+        }
     })
 
     return (

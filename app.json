@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Contact App",
-    "slug": "contactApp",
+    "name": "Ampersand Contact",
+    "slug": "contact_app",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -25,6 +25,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.codetraingh.ampersandcontact"
     }
   }
 }
