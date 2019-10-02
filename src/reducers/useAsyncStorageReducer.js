@@ -1,22 +1,22 @@
 import React, {useReducer} from 'react'
 import { AsyncStorage } from 'react-native'
 
-const useAsyncStorageReducer = (reducer, initialState=null)=>{
-    const getItem = async()=>{
-        const info = await AsyncStorage.getItem('userInfo');
-        return info;
-    }
+const getItem = async()=>{
+    const info = await AsyncStorage.getItem('userInfo');
+    return info;
+}
+const useAsyncStorageReducer = (reducer, initialState)=>{
     const [state, dispatch] = useReducer(reducer, initialState,()=>{
+        let value;
         try {
             const info = getItem();
-            const data = JSON.parse(info);
-            return data;  
+             value = JSON.parse(info);
         } catch (error) {
-            console.log(error);
+            value = initialState;
         }
-        return null;
+        return value;
     });
-    console.log(state);
+    
     
     return [state, dispatch];
 }
