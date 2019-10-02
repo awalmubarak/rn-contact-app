@@ -1,30 +1,42 @@
-import React from 'react'
-import { View, StyleSheet, Text, Image } from 'react-native'
+import React, {useContext} from 'react'
+import { View, StyleSheet, Text, Image, TouchableOpacity, Linking } from 'react-native'
 import { SimpleLineIcons, MaterialCommunityIcons, EvilIcons, Entypo } from '@expo/vector-icons'
+import { AuthContext } from '../contexts/AuthContext'
 
-const ProfileScreen = ()=>{
+
+const ProfileScreen = ({navigation})=>{
+    const {state, dispatch} = useContext(AuthContext)
+    let userInfo = state;
+    const data = navigation.getParam('data');
+    if(data && data.firstName && data.lastName && data.email && data.photo){
+        userInfo = data;
+    }
     return <View style={styles.container}>
         <View style={styles.userInfoContainer}>
-            <Image source={require('../../assets/user.png')} style={styles.userImageStyle}/>
+            <Image source={{uri: userInfo.photo}} style={styles.userImageStyle}/>
             <View style={styles.userInfoStyle}>
-                <Text style={styles.primaryTextStyle}>Joan Shay</Text>
+                <Text style={styles.primaryTextStyle}>{userInfo.firstName} {userInfo.lastName}</Text>
                 <Text style={styles.secondaryTextStyle}>Head of Marketing</Text>
             </View>
         </View>
 
         <View style={styles.socailContainer}>
-            <Entypo name="twitter-with-circle" size={30} color="#4c4d4f"/>
-            <Entypo name="linkedin-with-circle" size={30} color="#4c4d4f" style={{marginLeft:10}}/>
+            <TouchableOpacity onPress={()=>Linking.openURL(`https://twitter.com/${userInfo.twitter.substr(1)}`)}>
+                <Entypo name="twitter-with-circle" size={30} color="#4c4d4f"/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>Linking.openURL(`${userInfo.linkedIn}`)}>
+                <Entypo name="linkedin-with-circle" size={30} color="#4c4d4f" style={{marginLeft:10}}/>
+            </TouchableOpacity>
         </View>
 
         <View>
             <View style={styles.socailContainer}>
                 <SimpleLineIcons name='phone' size={15} style={styles.contactIcon}/>
-                <Text style={styles.contactInfoTextStyle}>+233 (245) 223 4543</Text>                
+                <Text style={styles.contactInfoTextStyle}>{userInfo.phoneNumber}</Text>                
             </View>
             <View style={styles.socailContainer}>
                 <MaterialCommunityIcons name='email-outline' size={15} style={styles.contactIcon}/>
-                <Text style={styles.contactInfoTextStyle}>joan@amperlocasa.co</Text>                
+                <Text style={styles.contactInfoTextStyle}>{userInfo.email}</Text>                
             </View>
             <View style={styles.socailContainer}>
                 <EvilIcons name='location' size={15} style={styles.contactIcon}/>
@@ -59,7 +71,8 @@ const styles = StyleSheet.create({
     userImageStyle:{
         width: 50,
         height: 50,
-        alignSelf: "center"
+        alignSelf: "center",
+        borderRadius: 25
     },
     secondaryTextStyle: {
         color: 'grey',

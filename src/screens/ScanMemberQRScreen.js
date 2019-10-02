@@ -12,7 +12,7 @@ const ScanMemberQRScreen = ({navigation})=>{
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
 
     const barcodeScanned = ({type, data})=>{
-        navigation.navigate("Profile", {appTitle: "Member Profile"})
+        navigation.navigate("Profile", {appTitle: "Member Profile", data})
     }
 
     const didMount = async ()=>{
