@@ -1,11 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { View, Text, StyleSheet, Image, Dimensions, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import FormInput from '../components/FormInput'
 import OrientationLoadingOverlay from 'react-native-orientation-loading-overlay';
+import { AuthContext } from '../contexts/AuthContext'
 
 const win = Dimensions.get('screen')
 const SignInScreen = ({navigation})=>{
+    const {state, dispatch} = useContext(AuthContext)
     const [isSigingIn, setIsSigingIn] = useState(false)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
                 <Image source={require('../../assets/login.jpg')} style={styles.imageStyle}/>
@@ -14,19 +18,19 @@ const SignInScreen = ({navigation})=>{
                         <FormInput style={styles.formInputStyle} 
                             label="Email"
                             placeholder="john.smith@mail.com"
+                            value={email} onchange={setEmail}
                         />
                         <FormInput
                             label="Password"
                             placeholder="******"
                             secure={true}
+                            value={password} onchange={setPassword}
                         />
                         <TouchableOpacity  style={styles.signInButton} 
                             onPress={()=>{
                                 setIsSigingIn(true);
-                                setTimeout(()=>{
-                                    setIsSigingIn(false);
-                                    navigation.navigate("HomeQRScreen");
-                                }, 3000);
+                                dispatch({type:"dummy", payload: setIsSigingIn})
+                                navigation.navigate("HomeQRScreen", {});
                             }}>
                             <Text style={styles.signInButtonText}>SIGN IN</Text>
                         </TouchableOpacity>

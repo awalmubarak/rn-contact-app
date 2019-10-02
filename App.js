@@ -76,7 +76,7 @@ const Main = ()=>{
   }, []);
   if(fontLoaded===false)return <AppLoading/>;
   return <AuthProvider>
-          <App ref={ref=>{NavigationService.setNavigator(ref)}}/>
+          <App ref={appref=>{NavigationService.setTopLevelNavigator(appref)}}/>
         </AuthProvider>
 }
 

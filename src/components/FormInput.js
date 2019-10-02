@@ -1,7 +1,9 @@
 import React from 'react'
 import {View, Text,TextInput, StyleSheet } from 'react-native'
 
-const FormInput = ({style, label, placeholder, secure})=>{
+const FormInput = ({style, label, placeholder, secure, value, onchange})=>{
+    console.log(value);
+    
     return <View style={[styles.inputContainer, style]}>
     <Text style={styles.inputLabel}>{label}</Text>
     <TextInput 
@@ -10,6 +12,8 @@ const FormInput = ({style, label, placeholder, secure})=>{
         autoCapitalize="none"
         autoCorrect={false}
         secureTextEntry={secure?secure:false}
+        value={value}
+        onChangeText={onchange}
         />
 </View>
 }

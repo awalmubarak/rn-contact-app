@@ -1,7 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { AuthContext } from '../contexts/AuthContext'
 
 const HomeQRScreen = ({navigation})=>{
+    const {state, dispatch} = useContext(AuthContext)
+    const uri = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${JSON.stringify(state)}`
+    console.log(uri);
+    
     return <View style={styles.containerStyle}>
         <View style={styles.contentStyle}>
             <View style={styles.introTextContainer}>
@@ -10,7 +15,7 @@ const HomeQRScreen = ({navigation})=>{
             </View>
 
             <View style={styles.qrImageContainer}>
-                <Image source={require('../../assets/qrcode.png')} style={styles.qrImageStyle}/>
+                <Image source={{uri}} style={styles.qrImageStyle}/>
             </View>
 
             <View style={styles.userInfoContainer}>

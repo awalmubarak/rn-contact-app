@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native'
 import authApi from '../AuthApi'
 import NavigationService from '../NavigationService';
 
-export const reducer = async(state, {type, payload})=>{
+const reducer = async(state, {type, payload})=>{
     switch (type) {
         case "sign_in":
             const SignInresponse = await authApi.post('/login', {
@@ -37,8 +37,24 @@ export const reducer = async(state, {type, payload})=>{
         case "logout":
                 await AsyncStorage.clear();
                 NavigationService.navigate("Auth");  
-                break;          
+                break;  
+        case 'dummy':
+                const data = {
+                    "email": "drew@ampersandllc.co",
+                    "password": "yelL0w",
+                    "firstName": "Drew",
+                    "lastName": "Barnes",
+                    "photo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg==",
+                    "phoneNumber": "+233268187573",
+                    "twitter": "@drew_brns",
+                    "linkedIn": "https://www.linkedin.com/in/drew-barnes-81839938",
+                    "website": "www.ampersandllc.co"
+                }
+                await AsyncStorage.setItem("userInfo", JSON.stringify(data));
+                return data;
         default:
             break;
     }
 }
+
+export {reducer}
