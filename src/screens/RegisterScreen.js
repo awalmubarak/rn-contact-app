@@ -1,10 +1,15 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
+import React, {useContext} from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import FormInput from '../components/FormInput'
+import KeyboardShift from '../components/KeyboardShift'
+import { AuthContext } from '../contexts/AuthContext'
+
 
 
 const RegisterScreen = ({navigation})=>{
-    return <KeyboardAvoidingView behavior="padding" style={styles.container}>
+    const {state, dispatch} = useContext(AuthContext)
+
+    return <KeyboardShift>
         <TouchableOpacity style={styles.iconContainer}>
             <Image source={require('../../assets/user.png')} style={styles.userIconStyle}/>
             <Text style={styles.profileText}>ADD PROFILE PHOTO</Text>
@@ -36,11 +41,15 @@ const RegisterScreen = ({navigation})=>{
             />
 
             <TouchableOpacity  style={styles.signInButton} 
-                onPress={()=>navigation.navigate("HomeQRScreen")}>
+                onPress={()=>{
+                        dispatch({type:"dummy", payload: setIsSigingIn})
+                        navigation.navigate("HomeQRScreen", {})
+                        }
+                    }>
                 <Text style={styles.signInButtonText}>REGISTER</Text>
             </TouchableOpacity>
         </View>
-    </KeyboardAvoidingView>
+    </KeyboardShift>
 }
 RegisterScreen.navigationOptions = ()=> {
     return {
