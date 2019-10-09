@@ -42,7 +42,7 @@ const RegisterScreen = ({navigation})=>{
 
             <TouchableOpacity  style={styles.signInButton} 
                 onPress={()=>{
-                        dispatch({type:"dummy", payload: setIsSigingIn})
+                        dispatch({type:"dummy"})
                         navigation.navigate("HomeQRScreen", {})
                         }
                     }>
